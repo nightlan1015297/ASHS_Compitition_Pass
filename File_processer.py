@@ -14,17 +14,17 @@ const_conpitition_high_element = ("高年級男跳遠","高年級女跳遠","高
 const_team_conpitition_mid_element = ("大隊接力 A 隊","大隊接力 B 隊")
 const_team_conpitition_high_element = ("大隊接力 A 隊","大隊接力 B 隊")
 
-const_conpitition_junior_one = ("國一女 100 公尺決賽","國一男 100 公尺決賽","國一女 400 公尺決賽","國一男 400 公尺決賽","國一女 800 公尺決賽","國一男 1500 公尺決賽","國一男跳高","國一女跳高","國一男跳遠","國一女跳遠","國一男藥球","國一女藥球")
-const_conpitition_junior_two = ("國二女 100 公尺決賽","國二男 100 公尺決賽","國二女 400 公尺決賽","國二男 400 公尺決賽","國二女 800 公尺決賽","國二男 1500 公尺決賽","國二男跳高","國二女跳高","國二男跳遠","國二女跳遠","國二男藥球","國二女藥球")
-const_conpitition_junior_tre = ("國三女 100 公尺決賽","國三男 100 公尺決賽","國三女 400 公尺決賽","國三男 400 公尺決賽","國三女 800 公尺決賽","國三男 1500 公尺決賽","國三男跳高","國三女跳高","國三男跳遠","國三女跳遠","國三男藥球","國三女藥球")
+const_conpitition_junior_one = ("國一男跳遠","國一女跳遠","國一男跳高","國一女跳高","國一男藥球","國一女藥球","國一女 100 公尺","國一男 100 公尺","國一女 400 公尺","國一男 400 公尺","國一女 800 公尺","國一男 1500 公尺")
+const_conpitition_junior_two = ("國二男跳遠","國二女跳遠","國二男跳高","國二女跳高","國二男藥球","國二女藥球","國二女 100 公尺","國二男 100 公尺","國二女 400 公尺","國二男 400 公尺","國二女 800 公尺","國二男 1500 公尺")
+const_conpitition_junior_tre = ("國三男跳遠","國三女跳遠","國三男跳高","國三女跳高","國三男藥球","國三女藥球","國三女 100 公尺","國三男 100 公尺","國三女 400 公尺","國三男 400 公尺","國三女 800 公尺","國三男 1500 公尺")
 
 const_team_conpitition_junior_one = ("國一男生 400 公尺接力","國一女生 400 公尺接力")
 const_team_conpitition_junior_two = ("國二男生 400 公尺接力","國二女生 400 公尺接力")
 const_team_conpitition_junior_tre = ("國三男生 400 公尺接力","國三女生 400 公尺接力")
 
-const_conpitition_senior_one = ("高一女 100 公尺決賽","高一男 100 公尺決賽","高一女 400 公尺決賽","高一男 400 公尺決賽","高一女 800 公尺決賽","高一男 1500 公尺決賽","高一男跳高","高一女跳高","高一男跳遠","高一女跳遠","高一男藥球","高一女藥球")
-const_conpitition_senior_two = ("高二女 100 公尺決賽","高二男 100 公尺決賽","高二女 400 公尺決賽","高二男 400 公尺決賽","高二女 800 公尺決賽","高二男 1500 公尺決賽","高二男跳高","高二女跳高","高二男跳遠","高二女跳遠","高二男藥球","高二女藥球")
-const_conpitition_senior_tre = ("高三女 100 公尺決賽","高三男 100 公尺決賽","高三女 400 公尺決賽","高三男 400 公尺決賽","高三女 800 公尺決賽","高三男 1500 公尺決賽","高三男跳高","高三女跳高","高三男跳遠","高三女跳遠","高三男藥球","高三女藥球")
+const_conpitition_senior_one = ("高一男跳遠","高一女跳遠","高一男跳高","高一女跳高","高一男藥球","高一女藥球","高一女 100 公尺","高一男 100 公尺","高一女 400 公尺","高一男 400 公尺","高一女 800 公尺","高一男 1500 公尺")
+const_conpitition_senior_two = ("高二男跳高","高二女跳高","高二男藥球","高二女藥球","高二男跳遠","高二女跳遠","高二女 100 公尺","高二男 100 公尺","高二女 400 公尺","高二男 400 公尺","高二女 800 公尺","高二男 1500 公尺")
+const_conpitition_senior_tre = ("高三男跳遠","高三女跳遠","高三男跳高","高三女跳高","高三男藥球","高三女藥球","高三女 100 公尺","高三男 100 公尺","高三女 400 公尺","高三男 400 公尺","高三女 800 公尺","高三男 1500 公尺")
 
 const_team_conpitition_senior_one = ("高一男生 400 公尺接力","高一女生 400 公尺接力")
 const_team_conpitition_senior_two = ("高二男生 400 公尺接力","高二女生 400 公尺接力")
@@ -211,14 +211,11 @@ def parser(const):
         union += i
     union = list(set(union))
     dic.update([('union',union),('Grade',Grade),('Class',Class)])
-    json_dat = json.dumps(dic,ensure_ascii = False)
+    json_dat = json.dumps(dic, indent=4,ensure_ascii = False)
 
-    with codecs.open(str(Grade)+"_"+str(Class)+".txt", "w",encoding='UTF-8') as file:
+    with open(str(Grade)+"_"+str(Class)+".txt", "w",encoding='UTF-8') as file:
         file.write(json_dat)
         
-    with open(str(Grade)+"_"+str(Class), "w", encoding='UTF-8') as file:
-        file.write(json_dat)
-    
     tk.Button(window,bg="gray",text = "建立下一份資料",font =("Microsoft JhengHei",20,"bold"),command = lambda:[renew_constant(),Destroy_all_child(window),Create_Grade_select(window)]).pack()
     tk.Button(window,bg="gray",text = "Exit",font =("Microsoft JhengHei",20,"bold"),command = lambda:[sys.exit(0)]).pack()
 
