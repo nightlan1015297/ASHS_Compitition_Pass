@@ -1,8 +1,3 @@
-const_conpitition_mid_element  = ("中年級男跳遠","中年級女跳遠","中年級男 60 公尺","中年級女 60 公尺")
-const_conpitition_high_element = ("高年級男跳遠","高年級女跳遠","高年級男跳高","高年級女跳高","高年級男 100 公尺","高年級女 100 公尺")
-const_team_conpitition_mid_element = ("大隊接力 A 隊","大隊接力 B 隊")
-const_team_conpitition_high_element = ("大隊接力 A 隊","大隊接力 B 隊")
-
 const_conpitition_track_junior_one = ("國一女 100 公尺","國一男 100 公尺","國一女 400 公尺","國一男 400 公尺","國一女 800 公尺","國一男 1500 公尺")
 const_conpitition_track_junior_two = ("國二女 100 公尺","國二男 100 公尺","國二女 400 公尺","國二男 400 公尺","國二女 800 公尺","國二男 1500 公尺")
 const_conpitition_track_junior_tre = ("國三女 100 公尺","國三男 100 公尺","國三女 400 公尺","國三男 400 公尺","國三女 800 公尺","國三男 1500 公尺")
@@ -26,6 +21,12 @@ const_conpitition_field_senior_tre = ("高三男跳高","高三女跳高","高�
 const_team_conpitition_senior_one = ("高一男生 400 公尺接力","高一女生 400 公尺接力")
 const_team_conpitition_senior_two = ("高二男生 400 公尺接力","高二女生 400 公尺接力")
 const_team_conpitition_senior_tre = ("高三男生 400 公尺接力","高三女生 400 公尺接力")
+
+const_conpitition_mid_element  = ("中年級男跳遠","中年級女跳遠","中年級男 60 公尺","中年級女 60 公尺")
+const_conpitition_high_element = ("高年級男跳遠","高年級女跳遠","高年級男跳高","高年級女跳高","高年級男 100 公尺","高年級女 100 公尺")
+
+const_team_conpitition_mid_element = ("大隊接力 A 隊","大隊接力 B 隊")
+const_team_conpitition_high_element = ("大隊接力 A 隊","大隊接力 B 隊")
 
 const_class = ("仁","義","禮","智","信","忠","孝","和")
 const_Grade_senior = ("高一","高二","高三")
@@ -124,8 +125,22 @@ def relay_subject_generator(Grade_data,const_data):
          result.append(string)
     return result
 
+def element_generator(Grade_data,const_data):
+    result = []
+    for subject in const_data:
+        Lis = []
+        string = ''
+        for data in Grade_data: 
+            Lis += data[subject]
+        string += (subject+"(共"+str(len(Lis))+"人)"+"\n")
+        string+=(" ".join(Lis)+"\n")
+        result.append(string)
+    return result
+
 num_list = import_num_data()
 
+element_mid  = import_data(const_file_name_mid_element)
+element_high = import_data(const_file_name_high_element)
 
 junior_one_data = import_data(const_file_name_junior_one)
 junior_two_data = import_data(const_file_name_junior_two)
@@ -209,3 +224,16 @@ with open(dir+'Senior_relay'+".txt", "w",encoding='UTF-8') as file:
         print("".join(i))
     sys.stdout = original_stdout
  
+with open(dir+'Element_mid'+".txt", "w",encoding='UTF-8') as file:
+    sys.stdout = file
+    dat = element_generator(element_mid,const_conpitition_mid_element)
+    for i in dat:
+        print("".join(i))
+    sys.stdout = original_stdout
+
+with open(dir+'Element_high'+".txt", "w",encoding='UTF-8') as file:
+    sys.stdout = file
+    dat = element_generator(element_high,const_conpitition_high_element)
+    for i in dat:
+        print("".join(i))
+    sys.stdout = original_stdout
